@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Db_projeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblkullanici">
+    <Key>
+      <PropertyRef Name="kullanici_id" />
+    </Key>
+    <Property Name="kullanici_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kullanici_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kullanici_sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kullanıci_isim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kullanici_soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kullanici_adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblmusteri" Relationship="Self.FK_tblmusteri_tblkullanici" FromRole="tblkullanici" ToRole="tblmusteri" />
+    <NavigationProperty Name="tblsatis" Relationship="Self.FK_tblsatis_tblkullanici" FromRole="tblkullanici" ToRole="tblsatis" />
+    <NavigationProperty Name="tblurun" Relationship="Self.FK_tblurun_tblkullanici1" FromRole="tblkullanici" ToRole="tblurun" />
+    <NavigationProperty Name="tblkategori" Relationship="Db_projeModel.FK_tblkategori_tblkullanici" FromRole="tblkullanici" ToRole="tblkategori" />
+  </EntityType>
+  <EntityType Name="tblmusteri">
+    <Key>
+      <PropertyRef Name="musteri_id" />
+    </Key>
+    <Property Name="musteri_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="musteri_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="musteri_soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="musteri_tc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="musteri_adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kullanici_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblkullanici" Relationship="Self.FK_tblmusteri_tblkullanici" FromRole="tblmusteri" ToRole="tblkullanici" />
+    <NavigationProperty Name="tblsatis" Relationship="Self.FK_tblsatis_tblmusteri" FromRole="tblmusteri" ToRole="tblsatis" />
+  </EntityType>
+  <EntityType Name="tblsatis">
+    <Key>
+      <PropertyRef Name="satis_id" />
+    </Key>
+    <Property Name="satis_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="urun_id" Type="Int32" />
+    <Property Name="musteri_id" Type="Int32" />
+    <Property Name="kullanici_id" Type="Int32" />
+    <NavigationProperty Name="tblkullanici" Relationship="Self.FK_tblsatis_tblkullanici" FromRole="tblsatis" ToRole="tblkullanici" />
+    <NavigationProperty Name="tblmusteri" Relationship="Self.FK_tblsatis_tblmusteri" FromRole="tblsatis" ToRole="tblmusteri" />
+    <NavigationProperty Name="tblurun" Relationship="Self.FK_tblsatis_tblurun" FromRole="tblsatis" ToRole="tblurun" />
+  </EntityType>
+  <EntityType Name="tblurun">
+    <Key>
+      <PropertyRef Name="urun_id" />
+    </Key>
+    <Property Name="urun_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="urun_tur" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="urun_miktar" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="urun_kategori" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="urun_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="kullanici_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblkullanici" Relationship="Self.FK_tblurun_tblkullanici1" FromRole="tblurun" ToRole="tblkullanici" />
+    <NavigationProperty Name="tblsatis" Relationship="Self.FK_tblsatis_tblurun" FromRole="tblurun" ToRole="tblsatis" />
+    <Property Name="kategori_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblkategori" Relationship="Db_projeModel.FK_tblurun_tblkategori" FromRole="tblurun" ToRole="tblkategori" />
+    <Property Name="urun_fiyat" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_tblmusteri_tblkullanici">
+    <End Role="tblkullanici" Type="Self.tblkullanici" Multiplicity="1" />
+    <End Role="tblmusteri" Type="Self.tblmusteri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblkullanici">
+        <PropertyRef Name="kullanici_id" />
+      </Principal>
+      <Dependent Role="tblmusteri">
+        <PropertyRef Name="kullanici_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblsatis_tblkullanici">
+    <End Role="tblkullanici" Type="Self.tblkullanici" Multiplicity="0..1" />
+    <End Role="tblsatis" Type="Self.tblsatis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblkullanici">
+        <PropertyRef Name="kullanici_id" />
+      </Principal>
+      <Dependent Role="tblsatis">
+        <PropertyRef Name="kullanici_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblurun_tblkullanici1">
+    <End Role="tblkullanici" Type="Self.tblkullanici" Multiplicity="1" />
+    <End Role="tblurun" Type="Self.tblurun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblkullanici">
+        <PropertyRef Name="kullanici_id" />
+      </Principal>
+      <Dependent Role="tblurun">
+        <PropertyRef Name="kullanici_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblsatis_tblmusteri">
+    <End Role="tblmusteri" Type="Self.tblmusteri" Multiplicity="0..1" />
+    <End Role="tblsatis" Type="Self.tblsatis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblmusteri">
+        <PropertyRef Name="musteri_id" />
+      </Principal>
+      <Dependent Role="tblsatis">
+        <PropertyRef Name="musteri_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblsatis_tblurun">
+    <End Role="tblurun" Type="Self.tblurun" Multiplicity="0..1" />
+    <End Role="tblsatis" Type="Self.tblsatis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblurun">
+        <PropertyRef Name="urun_id" />
+      </Principal>
+      <Dependent Role="tblsatis">
+        <PropertyRef Name="urun_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Db_projeEntities0" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblkullanici" EntityType="Self.tblkullanici" />
+    <EntitySet Name="tblmusteri" EntityType="Self.tblmusteri" />
+    <EntitySet Name="tblsatis" EntityType="Self.tblsatis" />
+    <EntitySet Name="tblurun" EntityType="Self.tblurun" />
+    <AssociationSet Name="FK_tblmusteri_tblkullanici" Association="Self.FK_tblmusteri_tblkullanici">
+      <End Role="tblkullanici" EntitySet="tblkullanici" />
+      <End Role="tblmusteri" EntitySet="tblmusteri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblsatis_tblkullanici" Association="Self.FK_tblsatis_tblkullanici">
+      <End Role="tblkullanici" EntitySet="tblkullanici" />
+      <End Role="tblsatis" EntitySet="tblsatis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblurun_tblkullanici1" Association="Self.FK_tblurun_tblkullanici1">
+      <End Role="tblkullanici" EntitySet="tblkullanici" />
+      <End Role="tblurun" EntitySet="tblurun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblsatis_tblmusteri" Association="Self.FK_tblsatis_tblmusteri">
+      <End Role="tblmusteri" EntitySet="tblmusteri" />
+      <End Role="tblsatis" EntitySet="tblsatis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblsatis_tblurun" Association="Self.FK_tblsatis_tblurun">
+      <End Role="tblurun" EntitySet="tblurun" />
+      <End Role="tblsatis" EntitySet="tblsatis" />
+    </AssociationSet>
+    <EntitySet Name="tblkategori" EntityType="Db_projeModel.tblkategori" />
+    <AssociationSet Name="FK_tblkategori_tblkullanici" Association="Db_projeModel.FK_tblkategori_tblkullanici">
+      <End Role="tblkullanici" EntitySet="tblkullanici" />
+      <End Role="tblkategori" EntitySet="tblkategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblurun_tblkategori" Association="Db_projeModel.FK_tblurun_tblkategori">
+      <End Role="tblkategori" EntitySet="tblkategori" />
+      <End Role="tblurun" EntitySet="tblurun" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tblkategori">
+    <Key>
+      <PropertyRef Name="kategori_id" />
+    </Key>
+    <Property Name="kategori_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kategori_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kullanici_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblkullanici" Relationship="Db_projeModel.FK_tblkategori_tblkullanici" FromRole="tblkategori" ToRole="tblkullanici" />
+    <NavigationProperty Name="tblurun" Relationship="Db_projeModel.FK_tblurun_tblkategori" FromRole="tblkategori" ToRole="tblurun" />
+  </EntityType>
+  <Association Name="FK_tblkategori_tblkullanici">
+    <End Type="Db_projeModel.tblkullanici" Role="tblkullanici" Multiplicity="1" />
+    <End Type="Db_projeModel.tblkategori" Role="tblkategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblkullanici">
+        <PropertyRef Name="kullanici_id" />
+      </Principal>
+      <Dependent Role="tblkategori">
+        <PropertyRef Name="kullanici_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblurun_tblkategori">
+    <End Type="Db_projeModel.tblkategori" Role="tblkategori" Multiplicity="1" />
+    <End Type="Db_projeModel.tblurun" Role="tblurun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblkategori">
+        <PropertyRef Name="kategori_id" />
+      </Principal>
+      <Dependent Role="tblurun">
+        <PropertyRef Name="kategori_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

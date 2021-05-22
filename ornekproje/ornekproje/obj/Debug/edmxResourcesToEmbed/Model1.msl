@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Db_projeModelStoreContainer" CdmEntityContainer="Db_projeEntities0">
+    <EntitySetMapping Name="tblkullanici">
+      <EntityTypeMapping TypeName="Db_projeModel.tblkullanici">
+        <MappingFragment StoreEntitySet="tblkullanici">
+          <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+          <ScalarProperty Name="kullanici_ad" ColumnName="kullanici_ad" />
+          <ScalarProperty Name="kullanici_sifre" ColumnName="kullanici_sifre" />
+          <ScalarProperty Name="kullanıci_isim" ColumnName="kullanıci_isim" />
+          <ScalarProperty Name="kullanici_soyad" ColumnName="kullanici_soyad" />
+          <ScalarProperty Name="kullanici_adres" ColumnName="kullanici_adres" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblmusteri">
+      <EntityTypeMapping TypeName="Db_projeModel.tblmusteri">
+        <MappingFragment StoreEntitySet="tblmusteri">
+          <ScalarProperty Name="musteri_id" ColumnName="musteri_id" />
+          <ScalarProperty Name="musteri_ad" ColumnName="musteri_ad" />
+          <ScalarProperty Name="musteri_soyad" ColumnName="musteri_soyad" />
+          <ScalarProperty Name="musteri_tc" ColumnName="musteri_tc" />
+          <ScalarProperty Name="musteri_adres" ColumnName="musteri_adres" />
+          <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblsatis">
+      <EntityTypeMapping TypeName="Db_projeModel.tblsatis">
+        <MappingFragment StoreEntitySet="tblsatis">
+          <ScalarProperty Name="satis_id" ColumnName="satis_id" />
+          <ScalarProperty Name="urun_id" ColumnName="urun_id" />
+          <ScalarProperty Name="musteri_id" ColumnName="musteri_id" />
+          <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblurun">
+      <EntityTypeMapping TypeName="Db_projeModel.tblurun">
+        <MappingFragment StoreEntitySet="tblurun">
+          <ScalarProperty Name="urun_fiyat" ColumnName="urun_fiyat" />
+          <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+          <ScalarProperty Name="urun_id" ColumnName="urun_id" />
+          <ScalarProperty Name="urun_tur" ColumnName="urun_tur" />
+          <ScalarProperty Name="urun_miktar" ColumnName="urun_miktar" />
+          <ScalarProperty Name="urun_kategori" ColumnName="urun_kategori" />
+          <ScalarProperty Name="urun_ad" ColumnName="urun_ad" />
+          <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblkategori">
+      <EntityTypeMapping TypeName="Db_projeModel.tblkategori">
+        <MappingFragment StoreEntitySet="tblkategori">
+          <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+          <ScalarProperty Name="kategori_ad" ColumnName="kategori_ad" />
+          <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

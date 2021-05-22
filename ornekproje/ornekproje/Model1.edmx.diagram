@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="89d6ae93e0e24a9c91054733eea32e3c" Name="Diagram1">
+        <EntityTypeShape EntityType="Db_projeModel.tblkullanici" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_projeModel.tblmusteri" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_projeModel.tblsatis" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_projeModel.tblurun" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="Db_projeModel.FK_tblmusteri_tblkullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_projeModel.FK_tblsatis_tblkullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_projeModel.FK_tblurun_tblkullanici1" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_projeModel.FK_tblsatis_tblmusteri" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_projeModel.FK_tblsatis_tblurun" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Db_projeModel.tblkategori" Width="1.5" PointX="7.875" PointY="3.5" />
+        <AssociationConnector Association="Db_projeModel.FK_tblkategori_tblkullanici" />
+        <AssociationConnector Association="Db_projeModel.FK_tblurun_tblkategori" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
